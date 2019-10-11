@@ -1,0 +1,46 @@
+##################################################################################################
+# event service
+##################################################################################################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-service
+  labels:
+    app: event-service
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: event-service
+        version: "1.0"
+        serving: "true"
+    spec:
+      containers:
+        - name: event-service
+          image: sbishyr/event-service:0.3
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+  selector:
+    matchLabels:
+      app: event-service
+      version: "1.0"
+      serving: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-service
+  labels:
+    app: event-service
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: event-service
+    serving: "true"
