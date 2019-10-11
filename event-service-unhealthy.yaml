@@ -4,11 +4,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-service
+  name: event-service-unhealthy
   labels:
     app: event-service
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: event-service
-          image: sbishyr/event-service:1.0-crash
+          image: sbishyr/event-service:1.0-unhealthy
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

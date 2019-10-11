@@ -4,7 +4,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-service
+  name: event-service-unhealthy
   labels:
     app: event-service
 spec:
@@ -18,10 +18,17 @@ spec:
     spec:
       containers:
         - name: event-service
-          image: sbishyr/event-service:1.0-crash
+          image: sbishyr/event-service:1.0-unhealthy
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 20
   selector:
     matchLabels:
       app: event-service
