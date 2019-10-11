@@ -8,7 +8,7 @@ metadata:
   labels:
     app: event-service
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -27,8 +27,7 @@ spec:
               path: /
               port: 8080
             initialDelaySeconds: 10
-            timeoutSeconds: 3
-            failureThreshold: 20
+            periodSeconds: 1
   selector:
     matchLabels:
       app: event-service
