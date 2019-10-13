@@ -4,7 +4,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-service
+  name: event-service-v2
   labels:
     app: event-service
 spec:
@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: event-service
-        version: "1.0"
+        version: "2.0"
         serving: "true"
     spec:
       containers:
@@ -25,7 +25,7 @@ spec:
   selector:
     matchLabels:
       app: event-service
-      version: "1.0"
+      version: "2.0"
       serving: "true"
 ---
 apiVersion: v1
