@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: event-service
-          image: sbishyr/event-service:1.0-unhealthy
+          image: sbishyr/event-service:1.1-unhealthy
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
