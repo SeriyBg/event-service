@@ -8,7 +8,7 @@ metadata:
   labels:
     app: event-service
 spec:
-  replicas: 4
+  replicas: 1
   template:
     metadata:
       labels:
